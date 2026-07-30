@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Nuevo cliente | Law.m
+{% endblock %}
+
+{% block contenido %}
+
+<h1 class="logo">
+    Law.m
+</h1>
+
+<h2 class="mt-4">
+    Nuevo cliente
+</h2>
+
+<p class="text-muted">
+    Registra un nuevo cliente en el sistema.
+</p>
+
+
+{% if mensaje %}
+
+<div class="alert alert-danger">
+    {{ mensaje }}
+</div>
+
+{% endif %}
+
+
+<form action="{{ url_for('nuevo_cliente') }}" method="post">
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Nombre
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            name="nombre">
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Teléfono
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            name="telefono">
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Correo
+        </label>
+
+        <input
+            type="email"
+            class="form-control"
+            name="correo">
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Dirección
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            name="direccion">
+
+    </div>
+
+
+    <div class="mb-4">
+
+        <label class="form-label">
+            Observaciones
+        </label>
+
+        <textarea
+            class="form-control"
+            name="observaciones"
+            rows="4"></textarea>
+
+    </div>
+
+
+    <button class="btn btn-dark">
+        Guardar cliente
+    </button>
+
+
+    <a href="{{ url_for('clientes') }}" class="btn btn-secondary">
+        Cancelar
+    </a>
+
+
+</form>
+
+
+{% endblock %}

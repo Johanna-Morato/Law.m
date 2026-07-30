@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Clientes | Law.m
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+
+    <h2 class="logo-navbar">
+      Law.m
+    </h2>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2>
+            Clientes
+        </h2>
+
+        <p class="text-muted mb-0">
+            Administra el registro de tus clientes.
+        </p>
+
+    </div>
+
+    <a href="{{ url_for('nuevo_cliente') }}" class="btn btn-dark">
+        + Nuevo cliente
+    </a>
+
+</div>
+</div>
+{% with mensajes = get_flashed_messages(with_categories=true) %}
+
+    {% if mensajes %}
+
+        {% for categoria, mensaje in mensajes %}
+
+            <div class="alert alert-{{ categoria }} alert-dismissible fade show" role="alert">
+
+                {{ mensaje }}
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+                </button>
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+<div class="mt-4">
+
+{% if clientes|length == 0 %}
+
+<div class="alert alert-secondary">
+
+    No hay clientes registrados.
+
+</div>
+
+{% else %}
+
+<table class="table table-hover align-middle shadow-sm">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Nombre</th>
+
+            <th>Teléfono</th>
+
+            <th>Correo</th>
+
+            <th>Acciones</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for cliente in clientes %}
+
+        <tr>
+
+            <td>{{ cliente.nombre }}</td>
+
+            <td>{{ cliente.telefono }}</td>
+
+            <td>{{ cliente.correo }}</td>
+
+            <td>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('editar_cliente', id=cliente.id) }}"
+                        class="btn  btn-warning btn-sm">
+                            Editar
+                    </a>
+                    <form action="{{ url_for('eliminar_cliente', id=cliente.id) }}" method="post">
+                        <button 
+                          type="submit"
+                          class="btn btn-danger btn-sm"
+                          onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">
+                          Eliminar
+                        </button>
+                    </form>
+                </div>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

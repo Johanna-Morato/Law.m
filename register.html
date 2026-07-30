@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Crear cuenta | Law.m
+{% endblock %}
+
+{% block contenido %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-5">
+
+        <h1 class="logo text-center mb-4">
+            Law.m
+        </h1>
+
+
+        <h2 class="text-center mb-3">
+            Crear cuenta
+        </h2>
+
+
+        <p class="text-center text-muted mb-4">
+            Registra tus datos para comenzar a utilizar Law.m.
+        </p>
+
+
+        {% if mensaje %}
+
+        <div class="alert alert-warning text-center">
+            {{ mensaje }}
+        </div>
+
+        {% endif %}
+
+
+        <form action="{{ url_for('register') }}" method="post">
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    name="nombre"
+                    class="form-control">
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    name="correo"
+                    class="form-control">
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Contraseña
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control">
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Confirmar contraseña
+                </label>
+
+                <input
+                    type="password"
+                    name="confirmacion"
+                    class="form-control">
+
+            </div>
+
+
+            <button class="btn btn-dark w-100">
+                Crear cuenta
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
