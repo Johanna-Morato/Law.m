@@ -67,7 +67,7 @@ Law.m/
 └── static/
     └── styles.css
 
-
+```
 
 ## Database
 
